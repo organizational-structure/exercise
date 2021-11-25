@@ -17,3 +17,10 @@
 #### 四、插槽
 
 ​		 1.作用：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于 <strong style="color:red">父组件 ===> 子组件</strong> 
+
+#### 五、vuex
+
+​		何时使用：多个组件需要共享数据时
+
+![vuex](https://vuex.vuejs.org/vuex.png)
+
