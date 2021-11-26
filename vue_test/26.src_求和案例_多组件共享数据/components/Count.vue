@@ -3,7 +3,7 @@
     <h2>当前的和是：{{sum}}</h2>
     <h2>当前的求和放大10倍为：{{bigSum}}</h2>
     <h2>我在{{school}},学习{{subject}}</h2>
-    <!-- <h2 style="color:red">Person组件中的人数是{{personList.length}}</h2> -->
+    <h2 style="color:red">Person组件中的人数是{{personList.length}}</h2>
     <select v-model.number="n">
       <option value="1">1</option>
       <option value="2">2</option>
@@ -29,19 +29,17 @@
        },
        computed:{
         
-        // ...mapState({sum:'sum',school:'school',subject:'subject',personList:'personList'}),
-        ...mapState('countAbout',['sum','school','subject']),
+        ...mapState({sum:'sum',school:'school',subject:'subject',personList:'personList'}),
 
-        ...mapGetters('countAbout',['bigSum'])
+        ...mapGetters(['bigSum'])
         
 
        },
        methods: {
         
-        ...mapActions('countAbout',{incrementOdd:'addOdd',incrementWait:'addWait'}),
-        // ...mapActions()
+        ...mapActions({incrementOdd:'addOdd',incrementWait:'addWait'}),
 
-        ...mapMutations('countAbout',{increment:'Add',decrement:'Subtract'})
+        ...mapMutations({increment:'Add',decrement:'Subtract'})
        },
     }
 </script>
