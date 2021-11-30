@@ -12,32 +12,32 @@ const router =  new VueRouter({
             name:'guanyu',
             path:'/about',
             component:About,
-            meta:{isAuth:false}
+            meta:{title:'关于',isAuth:false}
         },
         {
             name:'zhuye',
             path:'/home',
             component:Home,
-            meta:{isAuth:false},
+            meta:{title:'主页',isAuth:false},
             children:[
                 {
                     name:'xinwen',
                     path:'news',
                     component:New,
-                    meta:{isAuth:true}
+                    meta:{title:'新闻',isAuth:true}
                 },
                 {
                     name:'xinxi',
                     path:'message',
                     component:Message,
-                    meta:{isAuth:true},
+                    meta:{title:'信息',isAuth:true},
                     children:[
                         {
                             name:'xiangqing',
                             // path:'detail/:id/:title',//占位符,用于params
                             path:'detail',//占位符
                             component:Detail,
-                            meta:{isAuth:true},
+                            meta:{title:'详情',isAuth:true},
                             //第一种写法，值为对象，该对象中的所有key-value都会以props的形式传给Detail组件。
                             // props:{id:666,title:'你好啊'}
 
@@ -60,7 +60,7 @@ const router =  new VueRouter({
     ]
 })
 
-//全局前置路由守卫——初始化的时候被调用、每次路由切换之前被调用
+//全局前置路由守卫——初始化的时候被调用、每次路由器切换之前被调用
 router.beforeEach((to,from,next)=>{
     console.log(to,from)
     if(to.meta.isAuth){
@@ -74,4 +74,7 @@ router.beforeEach((to,from,next)=>{
     }
 })
 
+router.afterEach((to)=>{
+   document.title = to.meta.title
+})
 export default router

@@ -6,38 +6,31 @@ import New from '../pages/New'
 import Message from '../pages/Message'
 import Detail from '../pages/Detail'
 //创建一个路由器
-const router =  new VueRouter({
+export default new VueRouter({
     routes:[
         {
             name:'guanyu',
             path:'/about',
-            component:About,
-            meta:{isAuth:false}
+            component:About
         },
         {
-            name:'zhuye',
             path:'/home',
             component:Home,
-            meta:{isAuth:false},
             children:[
                 {
-                    name:'xinwen',
                     path:'news',
-                    component:New,
-                    meta:{isAuth:true}
+                    component:New
                 },
                 {
-                    name:'xinxi',
                     path:'message',
                     component:Message,
-                    meta:{isAuth:true},
                     children:[
                         {
                             name:'xiangqing',
                             // path:'detail/:id/:title',//占位符,用于params
                             path:'detail',//占位符
                             component:Detail,
-                            meta:{isAuth:true},
+
                             //第一种写法，值为对象，该对象中的所有key-value都会以props的形式传给Detail组件。
                             // props:{id:666,title:'你好啊'}
 
@@ -59,19 +52,3 @@ const router =  new VueRouter({
         },
     ]
 })
-
-//全局前置路由守卫——初始化的时候被调用、每次路由切换之前被调用
-router.beforeEach((to,from,next)=>{
-    console.log(to,from)
-    if(to.meta.isAuth){
-        if(localStorage.getItem('school') === 'atguigu'){
-            next()
-        }else{
-            alert('学校名字不是atguigu，没有权限')
-        }
-    }else{
-        next()
-    }
-})
-
-export default router

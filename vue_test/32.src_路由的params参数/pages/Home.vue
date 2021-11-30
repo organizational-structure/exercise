@@ -10,11 +10,7 @@
           <router-link class="list-group-item " active-class="active" to="/home/message">Message</router-link>
         </li>
       </ul>
-      <!-- include中的是组件名，表示该New组件不被销毁 -->
-      <keep-alive include="New">
-        <router-view></router-view>
-      </keep-alive>
-      
+      <router-view></router-view>
   </div>
 </div>
   
@@ -22,10 +18,7 @@
 
 <script>
     export default {
-        name:'Home',
-        mounted() {
-          console.log(this.$router)
-        },
+        name:'Home'
     }
 </script>
 
